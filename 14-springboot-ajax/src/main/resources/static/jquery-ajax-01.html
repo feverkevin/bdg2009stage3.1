@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <div>
+       <h1>The Jquery Ajax 01 Page</h1>
+       <button onclick="doAjax()">$.ajax(...)</button>
+       <button onclick="doAjaxPost()">$.post(...)</button>
+       <button onclick="doAjaxGet()">$.get(...)</button>
+       <button onclick="doAjaxLoad()">$("..").load(...)</button>
+       <button>.....</button>
+   </div>
+   <div id="result"></div>
+   <script src="/js/jquery.min.js"></script>
+   <script>
+       function doAjaxLoad(){
+           let url="/doAjaxGet";
+           //在指定为异步加载url对应的资源
+           //这里的load函数为ajax异步get请求函数
+           //语法load(url[,params][,callback])
+           $("#result").load(url,function(){//此函数会在异步加载完成以后执行
+               console.log("load complete");
+           });//$.ajax()函数的演变形式
+       }
+       //基于jquery中的get函数发送ajax get请求
+       function  doAjaxGet(){
+           //1.定义url
+           let url="/doAjaxGet";
+           //2.定义请求参数
+           let params="";
+           //3.发送ajax get请求
+           //get函数语法 get(url[,params][,callback])
+           $.get(url,params,function(result){//4&&200
+               //服务端返回的字符串假如满足json格式，get函数自动会将这个json格式的字符串转换为js对象
+               console.log("result",result)
+               //debugger
+               $("#result").html(result);//html函数只接收字符串
+           },"text");//get函数是jquery中$.ajax({})函数的一种演变形式
+           //text为数据类型(dataType)
+       }
+       //基于jquery中的post函数发送ajax post请求
+       function  doAjaxPost(){
+           //1.定义url
+           let url="/doAjaxPost";
+           //2.定义请求参数
+           let params="id=200&name=oppo&remark=very good";
+           //3.发送post请求
+           //post函数语法 post(url[,params][,callback])
+           $.post(url,params,function(result){//4&&200
+                debugger
+                $("#result").html(result);
+           });//post函数是jquery中$.ajax({})函数的一种演变形式
+       }
+
+       //基于jquery中的ajax函数，向服务端发送异步请求
+       function doAjax(){
+          //1.定义url
+           let url="/doAjaxPost";
+          //2.定义请求参数
+           let params="id=200&name=oppo&remark=very good";
+          //3.发送异步请求(底层会借助XmlHttpRequest对象)
+           $.ajax({//这里的$符号为jquery对象，ajax()为jquery中的ajax函数
+              type:"POST",//不写这个选项，默认为get请求
+              url:url,
+              data:params,
+              success:function(result){//xhr.readState==4 && xhr.status==200
+                  $("#result").html(result);//这里的result为服务端响应到客户端的结果
+              }
+           })
+       }
+   </script>
+</body>
+</html>

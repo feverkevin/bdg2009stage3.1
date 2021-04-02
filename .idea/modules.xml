@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/02-maven/02-maven.iml" filepath="$PROJECT_DIR$/02-maven/02-maven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03-spring-initializr/03-spring-initializr.iml" filepath="$PROJECT_DIR$/03-spring-initializr/03-spring-initializr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04-springboot-start/04-springboot-start.iml" filepath="$PROJECT_DIR$/04-springboot-start/04-springboot-start.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05-springboot-features/05-springboot-features.iml" filepath="$PROJECT_DIR$/05-springboot-features/05-springboot-features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06-springboot-dependency-injection/06-springboot-dependency-injection.iml" filepath="$PROJECT_DIR$/06-springboot-dependency-injection/06-springboot-dependency-injection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07-springboot-hikaricp/07-springboot-hikaricp.iml" filepath="$PROJECT_DIR$/07-springboot-hikaricp/07-springboot-hikaricp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08-springboot-mybatis/08-springboot-mybatis.iml" filepath="$PROJECT_DIR$/08-springboot-mybatis/08-springboot-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/09-springboot-webmvc/09-springboot-webmvc.iml" filepath="$PROJECT_DIR$/09-springboot-webmvc/09-springboot-webmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10-springboot-brand/10-springboot-brand.iml" filepath="$PROJECT_DIR$/10-springboot-brand/10-springboot-brand.iml" />
+      <module fileurl="file://$PROJECT_DIR$/11-springboot-exception/11-springboot-exception.iml" filepath="$PROJECT_DIR$/11-springboot-exception/11-springboot-exception.iml" />
+      <module fileurl="file://$PROJECT_DIR$/12-springboot-response/12-springboot-response.iml" filepath="$PROJECT_DIR$/12-springboot-response/12-springboot-response.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13-springboot-validation/13-springboot-validation.iml" filepath="$PROJECT_DIR$/13-springboot-validation/13-springboot-validation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/14-springboot-ajax/14-springboot-ajax.iml" filepath="$PROJECT_DIR$/14-springboot-ajax/14-springboot-ajax.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15-dbpms-admin/15-dbpms-admin.iml" filepath="$PROJECT_DIR$/15-dbpms-admin/15-dbpms-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15-dbpms-common/15-dbpms-common.iml" filepath="$PROJECT_DIR$/15-dbpms-common/15-dbpms-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15-dbpms-parent/15-dbpms-parent.iml" filepath="$PROJECT_DIR$/15-dbpms-parent/15-dbpms-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15-dbpms-web/15-dbpms-web.iml" filepath="$PROJECT_DIR$/15-dbpms-web/15-dbpms-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/GitCGBIII2009Projects.iml" filepath="$PROJECT_DIR$/.idea/GitCGBIII2009Projects.iml" />
+    </modules>
+  </component>
+</project>

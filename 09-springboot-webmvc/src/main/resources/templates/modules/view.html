@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>username:[[${name}]]</h1>
+    <h1>state:[[${state}]]</h1>
+    <h1>City List:</h1>
+    <ul>
+        <li th:each="cty:${citys}">[[${cty}]]</li>
+    </ul>
+    <h1>请选择所属城市:</h1>
+    <form>
+        <select name="city">
+            <option th:each="cty:${citys}" th:text="${cty}">City</option>
+        </select>
+    </form>
+</body>
+</html>

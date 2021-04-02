@@ -1,0 +1,145 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">
+				
+				菜单管理</h3>
+
+				<div class="box-tools">
+					<div class="input-group input-group-sm" style="width: 100px;">
+						<div class="input-group-btn">
+						
+							<button type="button" 
+							class="btn btn-success btn-delete">
+							删除</button>
+							<button type="button" class="btn btn-default btn-add">添加</button>
+							<button type="button" class="btn btn-default btn-update">修改</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.box-header -->
+		<div class="box-body table-responsive no-padding">
+          <table id="menuTable" class="table table-hover">
+        	<thead>
+	        <tr>
+		      <th data-field="selectItem" data-checkbox="true"></th>
+	        </tr>
+	       </thead>
+	       
+         </table>
+        </div>
+		</div>
+		<!-- /.box -->
+	</div>
+</div>
+<script type="text/javascript" src="bower_components/treegrid/jquery.treegrid.extension.js"></script>
+<script type="text/javascript" src="bower_components/treegrid/jquery.treegrid.min.js"></script>
+<script type="text/javascript" src="bower_components/treegrid/tree.table.js"></script>
+<script type="text/javascript">
+/**
+ * 初始化表格的列
+ */
+var columns = [
+{
+	field : 'selectItem',
+	radio : true
+},
+{
+	title : '菜单ID',
+	field : 'id',
+	align : 'center',
+	valign : 'middle',
+	width : '80px'
+},
+{
+	title : '菜单名称',
+	field : 'name',
+	align : 'center',
+	valign : 'middle',
+	width : '130px'
+},
+{
+	title : '上级菜单',
+	field : 'parentName',
+	align : 'center',
+	valign : 'middle',
+	sortable : true,
+	width : '100px'
+},
+{
+	title : '类型',
+	field : 'type',
+	align : 'center',
+	valign : 'middle',
+	width : '70px',
+	formatter : function(item, index) {
+		if (item.type == 1) {
+			return '<span class="label label-success">菜单</span>';
+		}
+		if (item.type == 2) {
+			return '<span class="label label-warning">按钮</span>';
+		}
+	}
+}, 
+{
+	title : '排序号',
+	field : 'sort',
+	align : 'center',
+	valign : 'middle',
+	sortable : true,
+	width : '70px'
+}, 
+{
+	title : '菜单URL',
+	field : 'url',
+	align : 'center',
+	valign : 'middle',
+
+	width : '160px'
+}, 
+{
+	title : '授权标识',//要显示的标题名称
+	field : 'permission',//json串中的key
+	align : 'center',//水平居中
+	valign : 'middle',//垂直居中
+	sortable : false //是否排序
+} ];//格式来自官方demos -->treeGrid(jquery扩展的一个网格树插件)
+
+$(function(){
+	doFindObjects();
+	//基于class选择器，在容器选择器input-group-btn对应的对象上注册click事件
+	//当点击容器内部的子元素btn-add时，执行事件处理函数doLoadEditUI
+	$(".input-group-btn")
+			.on("click",".btn-add,.btn-update",doLoadEditUI);
+	        //.on("click",".btn-update",doLoadEditUI)
+})
+function doLoadEditUI(){
+	let title;
+	if($(this).hasClass("btn-add")){
+		title="添加菜单";
+	}else{
+		title="修改菜单";
+		//获取选中行记录
+		debugger
+		let menu=
+		$("tbody input:radio:checked").parents("tr").data("rowData");
+		//将选中行记录绑定到#mainContentId位置
+		$("#mainContentId").data("rowData",menu);
+	}
+
+	let url="/menu/menu_edit";
+	$("#mainContentId").load(url,function(){
+		$(".box-title").html(title);
+	});
+}
+function doFindObjects(){
+	let url="/menu/doFindObjects";
+	let treeTable=new TreeTable("menuTable",url,columns);
+	treeTable.init();//底层ajax应用
+}
+
+
+
+</script>

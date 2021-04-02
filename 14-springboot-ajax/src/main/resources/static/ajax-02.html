@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <div>
+       <h1>The Ajax 02 Page</h1>
+       <button onclick="doAjaxGet()">Do Ajax Get</button>
+       <button onclick="doAjaxPost()">Do Ajax Post</button>
+       <button onclick="doAjaxDelete()">Do Ajax Delete</button>
+       <button onclick="doAjaxPut()">Do Ajax Put</button>
+   </div>
+   <div id="result"></div>
+   <script>
+       //Ajax Get 请求方式应用，此方式主要用于从服务端获取数据
+       function doAjaxGet(){
+           let xhr=new XMLHttpRequest();
+           xhr.onreadystatechange=function(){
+               if(xhr.readyState==4){
+                   if(xhr.status==200){
+                       document.getElementById("result").innerHTML=xhr.responseText;
+                   }
+               }
+           }
+           xhr.open("GET","http://localhost/doAjaxGet",true);
+           xhr.send(null);//get请求send方法内部不传具体数据，可以为null，也可以什么都不写
+       }
+       //通过post请求实现添加操作
+       function doAjaxPost(){
+           let xhr=new XMLHttpRequest();
+           xhr.onreadystatechange=function(){
+               if(xhr.readyState==4){
+                   if(xhr.status==200){
+                       document.getElementById("result").innerHTML=xhr.responseText;
+                   }
+               }
+           }
+           //当做一个添加操作，或者向服务端提交的数据比较多时可以考虑使用post请求
+           xhr.open("POST","http://localhost/doAjaxPost",true);
+           xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+           xhr.send("id=200&name=xiaomi&remark=very good");//post请求数据要写到send方法内部
+       }
+       //通过delete请求实现删除操作
+       function doAjaxDelete(){
+           let xhr=new XMLHttpRequest();
+           xhr.onreadystatechange=function(){
+               if(xhr.readyState==4){
+                   if(xhr.status==200){
+                       document.getElementById("result").innerHTML=xhr.responseText;
+                   }
+               }
+           }
+           //当做一个添加操作，或者向服务端提交的数据比较多时可以考虑使用post请求
+           xhr.open("delete","http://localhost/doAjaxDelete/100",true);
+           xhr.send(null);
+       }
+       //通过Put请求实现更新操作
+       function doAjaxPut(){
+           let xhr=new XMLHttpRequest();
+           xhr.onreadystatechange=function(){
+               if(xhr.readyState==4){
+                   if(xhr.status==200){
+                       document.getElementById("result").innerHTML=xhr.responseText;
+                   }
+               }
+           }
+           //当做一个更新操作，可以考虑使用put请求
+           xhr.open("PUT","http://localhost/doAjaxPut",true);
+           xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+           xhr.send("id=200&name=oppo&remark=nice");//put请求数据要写到send方法内部
+       }
+   </script>
+</body>
+</html>

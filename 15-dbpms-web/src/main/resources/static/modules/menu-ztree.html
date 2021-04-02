@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/libs/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body>
+<!--定义用于显示树结构的div-->
+<div>
+    <ul id="zTreeId" class="ztree"></ul>
+</div>
+<!--引入ztree需要的js-->
+<script src="/js/jquery.min.js"></script>
+<script src="/libs/ztree/jquery.ztree.all.min.js"></script>
+<script>
+    //定义ztree的简易配置
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id", //此id对应服务端返回的数据中的id
+                pIdKey: "parentId",
+                rootPId: 0
+            }
+        }
+    };//尊重规则
+    var url="http://localhost/menu/doFindZtreeMenuNodes";
+    //向服务端发送ajax请求，将响应结果更新到页面上(以ztree结构进行呈现)
+    $.get(url,function(result){//jsonresult
+        //初始化zTree对象(参考官方-treejs.cn)-固定写法
+        $.fn.zTree.init($("#zTreeId"),setting,result.data);
+    })
+</script>
+</body>
+</html>

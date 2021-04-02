@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+  <h1>The Menu Page</h1>
+  <table class="table">
+      <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>parentName</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td colspan="3">Data is loading ....</td></tr>
+      </tbody>
+  </table>
+  </div>
+  <script src="/js/jquery.min.js"></script>
+  <script>
+      $(()=>{
+          doFindObjects();
+      })
+      function doFindObjects(){
+         let url="http://localhost/menu/doFindObjects";
+         $.get(url,(result)=>{
+             debugger
+             //console.log(result);
+             doHandleQueryResult(result);
+         })
+      }
+      function doHandleQueryResult(result){//JsonResult
+          if(result.state==1){
+              doSetTableBodyRows(result.data)
+          }else{
+              alert(result.message);
+          }
+      }
+      function doSetTableBodyRows(menus){
+          //获取tbody对象
+          let tBody=$("tbody");
+          //清空tbody中原有内容
+          tBody.empty();
+          //将服务端返回的结果更新到页面上
+          //方法1：
+          // for(let i=0;i<menus.length;i++) {
+          //     tBody.append(menus[i]);
+          // }
+          //方法2
+          // menus.forEach(function(item){
+          //     tBody.doCreateRow(item)
+          // })
+          //方法3
+          menus.forEach((item)=>{ //箭头函数
+              tBody.append(doCreateRow(item));
+          })
+      }
+      function doCreateRow(row){
+         return  `<tr>
+                  <td>${row.id}</td>
+                  <td>${row.name}</td>
+                  <td>${row.parentName}</td>
+               </tr>`
+      }
+  </script>
+
+</body>
+</html>

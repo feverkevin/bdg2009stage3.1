@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/libs/treegrid/jquery.treegrid.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+  <h1>The Menu Page</h1>
+      <table id="menuTable" class="table table-hover">
+          <thead>
+          <tr>
+              <th data-field="selectItem" data-checkbox="true"></th>
+          </tr>
+         </thead>
+      </table>
+  </div>
+  <script src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/libs/treegrid/jquery.treegrid.extension.js"></script>
+  <script type="text/javascript" src="/libs/treegrid/jquery.treegrid.min.js"></script>
+  <script type="text/javascript" src="/libs/treegrid/tree.table.js"></script>
+
+  <script>
+    //定义列标题
+    var columns = [
+        {
+            field : 'selectItem',
+            radio : true
+        },
+        {
+            title : '菜单ID',
+            field : 'id',
+            align : 'center',
+            valign : 'middle',
+            width : '80px'
+        },
+        {
+            title : '菜单名称',
+            field : 'name',
+            align : 'center',
+            valign : 'middle',
+            width : '130px'
+        },
+        {
+            title : '上级菜单',
+            field : 'parentName',
+            align : 'center',
+            valign : 'middle',
+            sortable : true,
+            width : '100px'
+        },
+        {
+            title : '类型',
+            field : 'type',
+            align : 'center',
+            valign : 'middle',
+            width : '70px',
+            formatter : function(item, index) {
+                if (item.type == 1) {
+                    return '<span class="label label-success">菜单</span>';
+                }
+                if (item.type == 2) {
+                    return '<span class="label label-warning">按钮</span>';
+                }
+            }
+        },
+        {
+            title : '排序号',
+            field : 'sort',
+            align : 'center',
+            valign : 'middle',
+            sortable : true,
+            width : '70px'
+        },
+        {
+            title : '菜单URL',
+            field : 'url',
+            align : 'center',
+            valign : 'middle',
+
+            width : '160px'
+        },
+        {
+            title : '授权标识',//要显示的标题名称
+            field : 'permission',//json串中的key
+            align : 'center',//水平居中
+            valign : 'middle',//垂直居中
+            sortable : false //是否排序
+        } ];//格式来自官方demos -->treeGrid(jquery扩展的一个网格树插件)
+
+      $(function(){
+          doFindObjects();
+      })
+      function doFindObjects(){
+          let url="http://localhost/menu/doFindObjects";
+          //构建treeTable对象(第一个参数是用于显示结果的table,第三个参数为列标题)
+          let treeTable=new TreeTable("menuTable",url,columns);
+          //初始化treeTable对象
+          treeTable.init();//底层发送ajax请求
+      }
+  </script>
+</body>
+</html>
