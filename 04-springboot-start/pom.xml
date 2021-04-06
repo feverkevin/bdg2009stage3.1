@@ -37,7 +37,10 @@
 	<build>
 		<plugins>
 			<!--项目中集成的maven build插件,此插件可以帮助我们进行项目打包等操作-->
-
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 
